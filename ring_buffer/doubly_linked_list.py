@@ -47,6 +47,11 @@ class DoublyLinkedList:
 
     def __len__(self):
         return self.length
+    
+    def print_list(self):
+        for i in range(self.length):
+            print(self.head.value)
+            self.head = self.head.next
 
     """Wraps the given value in a ListNode and inserts it 
     as the new head of the list. Don't forget to handle 
