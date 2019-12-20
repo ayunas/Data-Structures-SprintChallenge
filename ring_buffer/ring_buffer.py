@@ -9,6 +9,7 @@ dll = DoublyLinkedList()
     # else list length >= capacity: delete the head. and add new element to tail
     #if reaching capacity. 
 
+#adding new value: check capacity, if not reached, simply add to tail: in this case, capacity = 7
 dll.add_to_tail(1)
 dll.add_to_tail(2)
 dll.add_to_tail(3)
@@ -17,19 +18,16 @@ dll.add_to_tail(5)
 dll.add_to_tail(6)
 dll.add_to_tail(7)
 
+# adding new value: check capacity, if reached, remove from head and add to tail 
+dll.remove_from_head()
+dll.add_to_tail(8)
+
+# adding new value: check capacity, if reached, remove from head and add to tail 
+dll.remove_from_head()
+dll.add_to_tail(9)
+
 
 dll.print_list()
-
-
-# def print_list(ll):
-#     for i in range(ll.length):
-#         print(ll.head.value)
-#         ll.head = ll.head.next
-
-# print_list(dll)
-
-
-
 
 
 
