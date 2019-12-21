@@ -7,6 +7,7 @@ class ListNode:
         self.value = value
         self.prev = prev
         self.next = next
+        self.oldest = False
 
     """Wrap the given value in a ListNode and insert it
     after this node. Note that this node could already
@@ -49,9 +50,15 @@ class DoublyLinkedList:
         return self.length
     
     def print_list(self):
-        for i in range(self.length):
-            print(self.head.value)
-            self.head = self.head.next
+        dll = []
+        # print('self.head in print_list', self.head.value)
+        n = self.head
+        while n:
+            for i in range(self.length):
+                print('val in buffer: ',self.head.value)
+                dll.append(self.head.value)
+                self.head = self.head.next
+            return dll
 
     """Wraps the given value in a ListNode and inserts it 
     as the new head of the list. Don't forget to handle 
@@ -104,7 +111,25 @@ class DoublyLinkedList:
             return
         value = node.value
         self.delete(node)
+        self.shift_oldest()
         self.add_to_head(value)
+    
+    def shift_oldest(self):
+        n = self.head
+        while not n.oldest:
+            n = n.next
+        n.oldest = False
+        n.next.oldest = True
+        print('n.oldest -> n.next.oldest: ' ,n.value, n.next.value)
+            
+    
+    def find_oldest(self):
+        n = self.head
+        while n.next:
+            if n.oldest:
+                return n.value
+            else:
+                n = n.next
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
