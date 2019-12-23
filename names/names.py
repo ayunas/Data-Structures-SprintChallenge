@@ -1,26 +1,73 @@
 import time
+import math
 
-start_time = time.time()
+start = time.time()
 
-f = open('names_1.txt', 'r')
-names_1 = f.read().split("\n")  # List containing 10000 names
-f.close()
+f1 = open('names_1.txt')
+f2 = open('names_2.txt')
+names1 = f1.readlines()
+names2 = f2.readlines()
 
-f = open('names_2.txt', 'r')
-names_2 = f.read().split("\n")  # List containing 10000 names
-f.close()
+########################## use the in check for each name in the names1.txt.  runtime ~ 2.15 sec############################
+rawnames1 = [n.strip('\n') for n in names1]
+rawnames2 = [n.strip('\n') for n in names2]
 
 duplicates = []
-for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
 
-end_time = time.time()
-print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
-print (f"runtime: {end_time - start_time} seconds")
+for rn1 in rawnames1:
+    if rn1 in rawnames2:
+        duplicates.append(rn1)
 
-# ---------- Stretch Goal -----------
-# Python has built-in tools that allow for a very efficient approach to this problem
-# What's the best time you can accomplish with no restrictions on techniques or data
-# structures?
+# for d in duplicates:
+#     print(d,'\n')
+
+print(len(duplicates),' duplicates')
+
+
+end = time.time()
+execution = end - start
+print('execution time: ', execution)
+########################## use the in check for each name in the names1.txt.  runtime ~ 2.15 sec############################
+
+########################## sorting names w/ binary search on a sorted array (list) #################################################
+# start = time.time()
+# rawnames1 = [n.strip('\n') for n in names1]
+# rawnames2 = [n.strip('\n') for n in names2]
+
+# rawnames1.sort()
+# rawnames2.sort()
+
+# def binary_search(val,arr):
+#     #array has been sorted already.  arr.sort()
+#     arr.sort()
+#     # print('array', arr, len(arr))
+#     if len(arr) <= 2:
+#         if val in arr:
+#             return val
+#         else: return None
+
+#     mid = math.floor(len(arr) / 2)
+
+#     if val >= arr[mid]:
+#         # print('arr[mid:]',arr[mid:])
+#         return binary_search(val,arr[mid:])
+#     else: #val < arr[mid]
+#         # print('arr[:mid]', arr[:mid])
+#         return binary_search(val,arr[:mid])
+
+# arr = [2,3,4,1,5,5,6,20,4,5,2,1]
+
+
+# duplicates = []
+
+# for n in rawnames1:
+#     found = binary_search(n,rawnames2)
+#     if found:
+#         duplicates.append(found)
+
+
+# end = time.time()
+
+# print('duplicate length: ', len(duplicates))
+# print('execution time: ', end - start)
+#####################################binary search on every name : ~ 7 seconds execution time#####
