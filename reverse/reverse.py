@@ -41,7 +41,22 @@ class LinkedList:
         return True
       n = n.next
     return False
-  
+
+  def reverse(self):
+    if self.head is None:
+      return
+
+    curr = self.head
+    prev = None
+    next = None
+
+    while curr:
+      next = curr.next #stashing value of curr.next)
+      curr.next = prev #changing pointer
+      prev = curr #shifting prev one step (initially, it is none)
+      curr = next #shifting next one step
+    self.head = prev #end of loop, curr is None.  so prev holds last node.  set the head to be the last node. 
+      
   def __repr__(self):
     nodes = []
     n = self.head
@@ -57,9 +72,14 @@ ll = LinkedList()
 ll.append(10)
 ll.append(20)
 ll.prepend(5)
-print(ll.contains(21))
-
+ll.append(8)
+ll.append(14)
+ll.append(23)
+ll.append(34)
 print(ll)
+ll.reverse()
+print(ll)
+
 
 
 
